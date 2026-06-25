@@ -1,20 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rick and Morty API</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="container">
-        <section id="characters" class="row row-cols-2 row-cols-lg-4 g-3">
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Consumo de API REST: Rick and Morty</h1>
+
+        <div class="d-flex gap-2 justify-content-center mb-4">
+            <button id="btn-mostrar" class="btn btn-primary">1. Obtener 10 Personajes</button>
+            <button id="btn-agrupar" class="btn btn-success">2. Agrupar por Especie</button>
+            <button id="btn-ficha" class="btn btn-info text-white">3. Mostrar Ficha</button>
+        </div>
+
+        <section id="characters" class="row row-cols-2 row-cols-lg-4 g-3 mb-5">
             
         </section>
+
+        <div id="agrupacion" class="mb-5"></div>
+
+        <div id="ficha" class="mb-5"></div>
     </div>
+
     <script src="./rickmorty.js"></script>
 </body>
 
