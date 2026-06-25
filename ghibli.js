@@ -12,8 +12,7 @@ class GhibliAPI {
                 throw new Error("Hubo un error al recibir la información");
             }
 
-            const data = result.json()
-
+            const data = await result.json()
             return data
         } catch (error) {
             console.error(error)
@@ -22,53 +21,36 @@ class GhibliAPI {
 
     async getFilmsId() {
         const films = await this.getFilms()
-
-        const filmsID = films.map((film) => {
-            return film.id
-        }) // [id1, id2, id3, id4, idN...]
-
+        const filmsID = films.map((film) => film.id)
         return filmsID
     }
 
     async getTitleAndYear() {
-        const films = await this.getFilms() // [{}, {}...]
-
+        const films = await this.getFilms()
         const filmsTitleAndYear = films.map((film) => {
             return { title: film.title, year: film.release_date }
-        }) // [{title: film1, year: film1}, {title: film2, year: film2}...]
-
-        console.log(filmsTitleAndYear)
+        })
+        return filmsTitleAndYear
     }
 
-    getTitlesAndDirectors() { }
-    getTitleAndDescription() { }
-
     async byYear(year) {
-        const yearIsNaN = isNaN(year) // true si es NaN y false ni no es NaN (not a number)
+        const yearIsNaN = isNaN(year)
 
         if (yearIsNaN) {
-            return console.log("Ingresa un número porfavor")
+            console.log("Ingresa un número porfavor")
+            return []
         }
+        
         const films = await this.getFilms()
         
         if (year <= this.OLDER_FILM_YEAR) {
-            // ejemplo de pelicula más antigua dinámica
-            // const years = films.map(film => film.release_date) // [1986, 1988, 1988, 1989...]
-            // console.log(Math.min(...years))
             return films
         }
 
-        
-        const filteredFilms = films.filter((film) => {
-            if (film.release_date >= year) {
-                return film
-            }
-        })
-        
+        const filteredFilms = films.filter((film) => film.release_date >= year)
         return filteredFilms
     }
 }
 
 const ghibliClient = new GhibliAPI()
-
 export default ghibliClient
